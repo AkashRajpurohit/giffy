@@ -1,4 +1,8 @@
-# Tauri Svelte Template
+# Giffy
+
+Desktop application that lets you find GIFs on the web easily, without having to hunt for them manually.
+
+## Build With
 
 - **Tauri**
 - **GitHub action** for cross-platform builds
@@ -6,9 +10,9 @@
 - **Vite**
 - **TypeScript**
 - **`svelte-preprocess`** with Sass installed by default
-- **Hot module replacement**
-- **ESLint**
-- **Prettier**
+
+## Credits
+- Icon by [flaticon](https://www.flaticon.com/authors/anggara)
 
 ## Dev instructions
 

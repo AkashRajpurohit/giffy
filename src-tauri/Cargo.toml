@@ -1,7 +1,7 @@
 [package]
 name = "giffy"
 version = "0.1.0"
-description = "A Tauri App"
+description = "Desktop application that lets you find GIFs on the web easily, without having to hunt for them manually."
 authors = ["Akash Rajpurohit"]
 license = ""
 repository = ""

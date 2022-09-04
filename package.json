@@ -1,6 +1,7 @@
 {
   "name": "giffy",
-  "private": true,
+  "version": "0.1.0",
+  "description": "Desktop application that lets you find GIFs on the web easily, without having to hunt for them manually ",
   "scripts": {
     "tauri": "tauri",
     "dev": "tauri dev",
@@ -29,6 +30,13 @@
     "typescript": "^4.7.4",
     "vite": "^2.9.13"
   },
+  "author": {
+    "name": "Akash Rajpurohit",
+    "email": "me@akashrajpurohit.com",
+    "url": "https://akashrajpurohit.com"
+  },
+  "license": "MIT",
+  "keywords": ["GIF finder"],
   "prettier": {
     "printWidth": 100,
     "semi": true,

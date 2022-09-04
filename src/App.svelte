@@ -1,6 +1,7 @@
 <script lang="ts">
   import GifResults from './components/GifResults.svelte'
   import { gifSearchBaseUrl } from './lib/constants'
+import type { GifApiResponse } from './lib/types';
   import { search } from './stores/search'
 
   const handleKeydown = async (event: KeyboardEvent) => {
@@ -16,7 +17,7 @@
         method: 'GET',
       })
 
-      const { results, error } = await response.json()
+      const { results, error } = await response.json() as GifApiResponse
 
       if (error) {
         search.update((state) => ({
@@ -25,7 +26,7 @@
           errorMessage: error,
           isLoading: false,
         }))
-      } else {
+      } else if (results) {
         search.update((state) => ({
           ...state,
           errorMessage: '',

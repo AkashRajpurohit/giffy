@@ -1,3 +1,6 @@
+# 0.3.1
+- Install `libappindicator-gtk` explicitly for ubuntu builds
+
 # 0.3.0
 - Copy to clipboard added when user clicks on the GIF results card.
 - `TAURI_TRAY` added for ubuntu release

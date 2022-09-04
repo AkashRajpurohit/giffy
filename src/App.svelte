@@ -38,11 +38,10 @@
   };
 </script>
 
-<h1>Giffy</h1>
 <div class="input-container">
   <div class="search-field">
     <input
-      type="search"
+      type="text"
       placeholder="Hit enter to search"
       bind:value={$search.text}
       on:keydown={handleKeydown}
@@ -70,8 +69,6 @@
     background-color: #111318
     color: #f2f2f2
     text-align: center
-  h1
-    color: #ff3700
   .input-container
     display: flex
     flex-direction: row
@@ -80,7 +77,14 @@
     gap: 0.75rem
     .search-field
       flex-grow: 1
-      input
+      input[type=text]
+        background-color: #1f222b
+        color: white
+        border: 1px solid #0b0c0f
+        outline: none
+        padding: 6px 10px
+        font-size: 14px
+        border-radius: 6px
         width: 100%
   strong
     color: red

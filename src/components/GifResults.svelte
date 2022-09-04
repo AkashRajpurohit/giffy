@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { MediaEntity } from 'src/lib/types';
   import { search } from '../stores/search';
+  import PoweredByTenor from './PoweredByTenor.svelte';
 
   function getAppropriateGif(media: MediaEntity) {
     // TODO: Take input from user regarding the quality
@@ -33,20 +34,25 @@
   }
 </script>
 
-<div class="results_container">
-  {#each $search.gifs as item}
-    <div class={getCardStyles((item?.media || [])[0])}>
-      <img
-        src={getImageUrl((item?.media || [])[0])}
-        alt={item.content_description ?? item.h1_title}
-      />
-    </div>
-  {/each}
+<div>
+  <div class="results_container">
+    {#each $search.gifs as item}
+      <div class={getCardStyles((item?.media || [])[0])}>
+        <img
+          src={getImageUrl((item?.media || [])[0])}
+          alt={item.content_description ?? item.h1_title}
+        />
+      </div>
+    {/each}
+  </div>
+  <div>
+    <PoweredByTenor />
+  </div>
 </div>
 
 <style>
   :root {
-    --card_width: 250px;
+    --card_width: 300px;
     --row_increment: 10px;
     --card_border_radius: 16px;
     --card_small: 26;
@@ -55,10 +61,7 @@
   }
 
   .results_container {
-    width: 100vw;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
 
     display: grid;
     grid-template-columns: repeat(auto-fill, var(--card_width));
@@ -67,7 +70,6 @@
   }
 
   .card {
-    padding: 0;
     margin: 10px;
     border-radius: var(--card_border_radius);
   }

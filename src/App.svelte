@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SvelteToast } from '@zerodevx/svelte-toast'
   import GifResults from './components/GifResults.svelte';
   import { gifSearchBaseUrl } from './lib/constants';
   import type { GifApiResponse } from './lib/types';
@@ -60,6 +61,8 @@
 {#if $search.gifs.length > 0}
   <GifResults />
 {/if}
+
+<SvelteToast  />
 
 <style lang="sass">
   :global(body)

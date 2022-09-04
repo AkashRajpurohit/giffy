@@ -2,6 +2,8 @@
   import type { MediaEntity } from 'src/lib/types';
   import { search } from '../stores/search';
   import PoweredByTenor from './PoweredByTenor.svelte';
+  import { writeText } from '@tauri-apps/api/clipboard';
+  import { toast } from '@zerodevx/svelte-toast';
 
   function getAppropriateGif(media: MediaEntity) {
     // TODO: Take input from user regarding the quality
@@ -32,12 +34,29 @@
 
     return className;
   }
+
+  async function copyImageToClipboard(media: MediaEntity) {
+    const gif = getAppropriateGif(media);
+    const url = gif.url;
+
+    await writeText(url);
+    toast.push('Copied to Clipboard', {
+      theme: {
+        '--toastBackground': '#48BB78',
+        '--toastBarBackground': '#2F855A',
+      },
+    });
+  }
 </script>
 
 <div>
   <div class="results_container">
     {#each $search.gifs as item}
-      <div class={getCardStyles((item?.media || [])[0])}>
+      <div
+        class={getCardStyles((item?.media || [])[0])}
+        on:click={() => copyImageToClipboard((item?.media || [])[0])}
+        title="Click to copy the GIF to clipboard"
+      >
         <img
           src={getImageUrl((item?.media || [])[0])}
           alt={item.content_description ?? item.h1_title}
@@ -72,6 +91,12 @@
   .card {
     margin: 10px;
     border-radius: var(--card_border_radius);
+  }
+
+  .card:hover {
+    cursor: pointer;
+    transition: all 0.3s;
+    transform: scale(1.05);
   }
 
   .card img {

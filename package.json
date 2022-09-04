@@ -18,6 +18,7 @@
     "@tauri-apps/cli": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
+    "@zerodevx/svelte-toast": "^0.7.2",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-svelte3": "^4.0.0",
@@ -36,7 +37,9 @@
     "url": "https://akashrajpurohit.com"
   },
   "license": "MIT",
-  "keywords": ["GIF finder"],
+  "keywords": [
+    "GIF finder"
+  ],
   "prettier": {
     "printWidth": 100,
     "semi": true,

@@ -1,5 +1,5 @@
 # 0.3.1
-- Install `libappindicator-gtk` explicitly for ubuntu builds
+- Install all required dependencies for Linux builds on CI. Tauri should default to using `libayatana-appindicator` as mentioned [here](https://github.com/tauri-apps/tauri/issues/2647#issuecomment-1160841679)
 
 # 0.3.0
 - Copy to clipboard added when user clicks on the GIF results card.

@@ -26,11 +26,11 @@ jobs:
         with:
           toolchain: stable
 
-      - name: Install webkit2gtk and appindicator (ubuntu only)
+      - name: Install Linux Dependencies
         if: matrix.platform == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y webkit2gtk-4.0 libappindicator-gtk
+          sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libayatana-appindicator3-dev librsvg2-dev patchelf
 
       - run: npm install
 
@@ -38,7 +38,6 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAURI_TRAY: libappindicator3
         with:
           tagName: v__VERSION__
           releaseName: v__VERSION__

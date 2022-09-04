@@ -7,10 +7,10 @@
     // TODO: Take input from user regarding the quality
     // of gif to consider??
 
-    // if (media?.nanogif) return media.nanogif;
-    if (media?.tinygif) return media.tinygif;
+    if (media?.gif) return media.gif;
     if (media?.mediumgif) return media.mediumgif;
-    return media?.gif;
+    if (media?.tinygif) return media.tinygif;
+    return media?.nanogif;
   }
 
   function getImageUrl(media: MediaEntity) {

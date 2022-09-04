@@ -30,7 +30,7 @@ jobs:
         if: matrix.platform == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y webkit2gtk-4.0 libayatana-appindicator libappindicator3
+          sudo apt-get install -y webkit2gtk-4.0 libayatana-appindicator-dev libappindicator3-1
 
       - run: npm install
 

@@ -38,6 +38,7 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_TRAY: libappindicator3
         with:
           tagName: v__VERSION__
           releaseName: v__VERSION__

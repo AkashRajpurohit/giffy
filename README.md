@@ -12,7 +12,7 @@ Desktop application that lets you find GIFs on the web easily, without having to
 - **`svelte-preprocess`** with Sass installed by default
 
 ## Credits
-- Icon by [flaticon](https://www.flaticon.com/authors/anggara)
+- Icon on flaticon by [anggara](https://www.flaticon.com/authors/anggara)
 
 ## Dev instructions
 

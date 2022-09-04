@@ -42,12 +42,25 @@
         "timestampUrl": ""
       }
     },
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": false
+    },
     "updater": {
       "active": false
     },
     "allowlist": {
+      "clipboard": {
+        "all": true
+      },
+      "globalShortcut": {
+        "all": true
+      },
       "shell": {
         "open": true
+      },
+      "dialog": {
+        "all": true
       }
     },
     "security": {

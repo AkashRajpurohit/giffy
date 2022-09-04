@@ -3,16 +3,15 @@
   windows_subsystem = "windows"
 )]
 
-use tauri::api::shell;
 use tauri::{
-  AboutMetadata, CustomMenuItem, Manager, Menu, MenuEntry, MenuItem, Submenu, WindowBuilder,
-  WindowUrl,
+  api::shell, AboutMetadata, CustomMenuItem, Manager, Menu, MenuEntry, MenuItem, Submenu,
+  SystemTray, SystemTrayEvent, SystemTrayMenu, WindowBuilder, WindowUrl,
 };
 
 fn main() {
   let ctx = tauri::generate_context!();
 
-  tauri::Builder::default()
+  let builder = tauri::Builder::default()
     .invoke_handler(tauri::generate_handler![])
     .setup(|app| {
       let _window = WindowBuilder::new(app, "main", WindowUrl::default())
@@ -52,8 +51,6 @@ fn main() {
           MenuItem::Cut.into(),
           MenuItem::Copy.into(),
           MenuItem::Paste.into(),
-          #[cfg(not(target_os = "macos"))]
-          MenuItem::Separator.into(),
           MenuItem::SelectAll.into(),
         ]),
       )),
@@ -82,6 +79,40 @@ fn main() {
         _ => {}
       }
     })
+    .system_tray(SystemTray::new().with_menu(SystemTrayMenu::new()))
+    .on_system_tray_event(|app, event| match event {
+      SystemTrayEvent::LeftClick {
+        position: _,
+        size: _,
+        ..
+      } => {
+        let app_handle = app.clone();
+        let window = app_handle.get_window("main").unwrap();
+
+        if window.is_visible().unwrap() {
+          window.hide().unwrap();
+        } else {
+          window.show().unwrap();
+          window.set_focus().unwrap();
+        };
+      }
+      _ => {}
+    });
+
+  #[allow(unused_variables)]
+  let app = builder
+    .invoke_handler(tauri::generate_handler![])
     .run(ctx)
-    .expect("error while running tauri application");
+    .expect("error while building tauri application");
+  
+  // Currently this does prevent the app to quit but the system tray click
+  // causes panic for finding the main window.
+  // #[allow(unused_variables)]
+  // app.run(move |app_handle, e| {
+  //   if let RunEvent::ExitRequested { api, .. } = &e {
+  //     // Keep the event loop running even if all windows are closed
+  //     // This allow us to catch system tray events when there is no window
+  //     api.prevent_exit();
+  //   }
+  // });
 }

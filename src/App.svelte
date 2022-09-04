@@ -38,7 +38,11 @@
 </script>
 
 <h1>Giffy</h1>
-<input type="search" bind:value={$search.text} on:keydown={handleKeydown} />
+<div class="input-container">
+  <div class="search-field">
+    <input type="search" placeholder="Hit enter to search" bind:value={$search.text} on:keydown={handleKeydown} />
+  </div>
+</div>
 
 {#if $search.isLoading}
   <p>loading...</p>
@@ -54,7 +58,7 @@
 
 <style lang="sass">
   :global(body)
-    margin: 100px 0px
+    margin: 20px 10px
     font-family: Arial, Helvetica, sans-serif
     font-size: 18px
     background-color: #111318
@@ -62,10 +66,16 @@
     text-align: center
   h1
     color: #ff3700
-  code
-    background: #282b33
-    padding: 2px 5px
-    border-radius: 4px
+  .input-container
+    display: flex
+    flex-direction: row
+    margin: 0 30px
+    align-items: center
+    gap: 0.75rem
+    .search-field
+      flex-grow: 1
+      input
+        width: 100%
   strong
     color: red
 </style>

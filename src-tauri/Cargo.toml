@@ -1,9 +1,9 @@
 [package]
 name = "giffy"
-version = "0.2.2"
+version = "0.3.0"
 description = "Desktop application that lets you find GIFs on the web easily, without having to hunt for them manually."
 authors = ["Akash Rajpurohit"]
-license = ""
+license = "MIT"
 repository = ""
 default-run = "giffy"
 edition = "2018"

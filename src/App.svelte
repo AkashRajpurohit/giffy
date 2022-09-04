@@ -1,16 +1,56 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import GifResults from './components/GifResults.svelte'
+  import { gifSearchBaseUrl } from './lib/constants'
+  import { search } from './stores/search'
 
-  let count = 0
-  onMount(() => {
-    const interval = setInterval(() => count++, 1000)
-    return () => clearInterval(interval)
-  })
+  const handleKeydown = async (event: KeyboardEvent) => {
+    if (event.code === 'Enter') {
+      search.update((state) => ({
+        ...state,
+        gifs: [],
+        errorMessage: '',
+        isLoading: true,
+      }))
+
+      const response = await fetch(`${gifSearchBaseUrl}/${encodeURIComponent($search.text)}`, {
+        method: 'GET',
+      })
+
+      const { results, error } = await response.json()
+
+      if (error) {
+        search.update((state) => ({
+          ...state,
+          gifs: [],
+          errorMessage: error,
+          isLoading: false,
+        }))
+      } else {
+        search.update((state) => ({
+          ...state,
+          errorMessage: '',
+          gifs: results,
+          isLoading: false,
+        }))
+      }
+    }
+  }
 </script>
 
-<h1>Svelte Template</h1>
-<p>Edit <code>src/routes/index.svelte</code> to trigger HMR</p>
-<p>Counter: <code>{count}</code></p>
+<h1>Giffy</h1>
+<input type="search" bind:value={$search.text} on:keydown={handleKeydown} />
+
+{#if $search.isLoading}
+  <p>loading...</p>
+{/if}
+
+{#if $search.errorMessage !== ''}
+  <strong>{$search.errorMessage}</strong>
+{/if}
+
+{#if $search.gifs.length > 0}
+  <GifResults />
+{/if}
 
 <style lang="sass">
   :global(body)
@@ -26,4 +66,6 @@
     background: #282b33
     padding: 2px 5px
     border-radius: 4px
+  strong
+    color: red
 </style>

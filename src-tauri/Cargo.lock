@@ -862,6 +862,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "giffy"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+]
+
+[[package]]
 name = "gio"
 version = "0.15.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2579,16 +2589,6 @@ dependencies = [
  "webview2-com",
  "windows",
  "wry",
-]
-
-[[package]]
-name = "tauri-template"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
 ]
 
 [[package]]

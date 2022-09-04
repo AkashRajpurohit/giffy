@@ -1,6 +1,6 @@
 {
   "package": {
-    "productName": "Tauri Template"
+    "productName": "Giffy"
   },
   "build": {
     "distDir": "../build",
@@ -12,7 +12,7 @@
     "bundle": {
       "active": true,
       "targets": ["dmg", "deb", "appimage", "msi"],
-      "identifier": "com.example.tauri-template",
+      "identifier": "com.akashrajpurohit.giffy",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -22,8 +22,8 @@
       ],
       "resources": [],
       "externalBin": [],
-      "copyright": "© 2022 Tauri Template",
-      "category": "DeveloperTool",
+      "copyright": "© 2022 Akash Rajpurohit",
+      "category": "Entertainment",
       "shortDescription": "",
       "longDescription": "",
       "deb": {

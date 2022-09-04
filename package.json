@@ -1,4 +1,5 @@
 {
+  "name": "giffy",
   "private": true,
   "scripts": {
     "tauri": "tauri",

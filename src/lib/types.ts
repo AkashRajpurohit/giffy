@@ -1,6 +1,6 @@
 export interface GifApiResponse {
-  results?: (ResultsEntity)[];
-	error?: string;
+  results?: ResultsEntity[];
+  error?: string;
 }
 export interface ResultsEntity {
   id: string;
@@ -8,13 +8,13 @@ export interface ResultsEntity {
   content_description: string;
   content_rating: string;
   h1_title: string;
-  media?: (MediaEntity)[];
+  media?: MediaEntity[];
   bg_color: string;
   created: number;
   itemurl: string;
   url: string;
-  tags?: (null)[];
-  flags?: (null)[];
+  tags?: null[];
+  flags?: null[];
   shares: number;
   hasaudio: boolean;
   hascaption: boolean;
@@ -38,11 +38,11 @@ export interface Loopedmp4OrTinymp4OrMp4OrNanomp4 {
   duration: number;
   size: number;
   preview: string;
-  dims?: (number)[];
+  dims?: number[];
   url: string;
 }
 export interface TinygifOrNanowebmOrMediumgifOrGifOrNanogifOrWebmOrTinywebm {
-  dims: (number)[];
+  dims: number[];
   preview: string;
   url: string;
   size: number;

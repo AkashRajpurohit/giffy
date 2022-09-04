@@ -1,8 +1,8 @@
 <script lang="ts">
-  import GifResults from './components/GifResults.svelte'
-  import { gifSearchBaseUrl } from './lib/constants'
-import type { GifApiResponse } from './lib/types';
-  import { search } from './stores/search'
+  import GifResults from './components/GifResults.svelte';
+  import { gifSearchBaseUrl } from './lib/constants';
+  import type { GifApiResponse } from './lib/types';
+  import { search } from './stores/search';
 
   const handleKeydown = async (event: KeyboardEvent) => {
     if (event.code === 'Enter') {
@@ -11,13 +11,13 @@ import type { GifApiResponse } from './lib/types';
         gifs: [],
         errorMessage: '',
         isLoading: true,
-      }))
+      }));
 
       const response = await fetch(`${gifSearchBaseUrl}/${encodeURIComponent($search.text)}`, {
         method: 'GET',
-      })
+      });
 
-      const { results, error } = await response.json() as GifApiResponse
+      const { results, error } = (await response.json()) as GifApiResponse;
 
       if (error) {
         search.update((state) => ({
@@ -25,23 +25,28 @@ import type { GifApiResponse } from './lib/types';
           gifs: [],
           errorMessage: error,
           isLoading: false,
-        }))
+        }));
       } else if (results) {
         search.update((state) => ({
           ...state,
           errorMessage: '',
           gifs: results,
           isLoading: false,
-        }))
+        }));
       }
     }
-  }
+  };
 </script>
 
 <h1>Giffy</h1>
 <div class="input-container">
   <div class="search-field">
-    <input type="search" placeholder="Hit enter to search" bind:value={$search.text} on:keydown={handleKeydown} />
+    <input
+      type="search"
+      placeholder="Hit enter to search"
+      bind:value={$search.text}
+      on:keydown={handleKeydown}
+    />
   </div>
 </div>
 

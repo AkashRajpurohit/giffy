@@ -1,3 +1,5 @@
+# 0.4.0
+- Show preview image to load results quickly and when users hover on the image then swap it with GIF so that they can preview the working GIF before copying it to the clipboard.
 # 0.3.1
 - Install all required dependencies for Linux builds on CI. Tauri should default to using `libayatana-appindicator` as mentioned [here](https://github.com/tauri-apps/tauri/issues/2647#issuecomment-1160841679)
 

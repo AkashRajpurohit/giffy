@@ -9,14 +9,20 @@
     // TODO: Take input from user regarding the quality
     // of gif to consider??
 
+    if (media?.tinygif) return media.tinygif;
+    if (media?.mediumgif) return media.mediumgif;
+    return media?.gif;
+  }
+
+  function getHighResolutionGif(media: MediaEntity) {
     if (media?.gif) return media.gif;
     if (media?.mediumgif) return media.mediumgif;
     if (media?.tinygif) return media.tinygif;
     return media?.nanogif;
   }
 
-  function getImageUrl(media: MediaEntity) {
-    return getAppropriateGif(media).url;
+  function getPreviewImageUrl(media: MediaEntity) {
+    return getAppropriateGif(media).preview;
   }
 
   function getCardStyles(media: MediaEntity) {
@@ -36,7 +42,7 @@
   }
 
   async function copyImageToClipboard(media: MediaEntity) {
-    const gif = getAppropriateGif(media);
+    const gif = getHighResolutionGif(media);
     const url = gif.url;
 
     await writeText(url);
@@ -46,6 +52,30 @@
         '--toastBarBackground': '#2F855A',
       },
     });
+  }
+
+  function swapWithGifUrl(
+    element: (MouseEvent | FocusEvent) & {
+      currentTarget: EventTarget & HTMLImageElement;
+    },
+    media: MediaEntity
+  ) {
+    const image = element.currentTarget;
+    const gif = getAppropriateGif(media);
+
+    image.src = gif.url;
+  }
+
+  function swapWithPreviewUrl(
+    element: (MouseEvent | FocusEvent) & {
+      currentTarget: EventTarget & HTMLImageElement;
+    },
+    media: MediaEntity
+  ) {
+    const image = element.currentTarget;
+    const gif = getAppropriateGif(media);
+    
+    image.src = gif.preview;
   }
 </script>
 
@@ -58,7 +88,11 @@
         title="Click to copy the GIF to clipboard"
       >
         <img
-          src={getImageUrl((item?.media || [])[0])}
+          on:mouseover={(e) => swapWithGifUrl(e, (item?.media || [])[0])}
+          on:focus={(e) => swapWithGifUrl(e, (item?.media || [])[0])}
+          on:mouseout={(e) => swapWithPreviewUrl(e, (item?.media || [])[0])}
+          on:blur={(e) => swapWithPreviewUrl(e, (item?.media || [])[0])}
+          src={getPreviewImageUrl((item?.media || [])[0])}
           alt={item.content_description ?? item.h1_title}
         />
       </div>

@@ -45,7 +45,21 @@
     const gif = getHighResolutionGif(media);
     const url = gif.url;
 
-    await writeText(url);
+    // Get the image blob
+    const response = await fetch(url);
+    const imageBlob = await response.blob();
+
+    const clipboardItem = new ClipboardItem({ [imageBlob.type]: imageBlob });
+
+    // This is going to fail anyway because permissions are not available
+    // Adding it for now when it starts supporting it.
+    // See here: https://github.com/tauri-apps/wry/issues/81
+    navigator.clipboard.write([clipboardItem]).catch(async (error) => {
+      console.error('Error in copying image to clipboard', error);
+      // In case of errors, we will fallback to writing URL text to Clipboard
+      await writeText(url);
+    });
+
     toast.push('Copied to Clipboard', {
       theme: {
         '--toastBackground': '#48BB78',
@@ -74,7 +88,7 @@
   ) {
     const image = element.currentTarget;
     const gif = getAppropriateGif(media);
-    
+
     image.src = gif.preview;
   }
 </script>

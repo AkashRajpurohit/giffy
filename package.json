@@ -2,6 +2,7 @@
   "name": "giffy",
   "version": "0.4.0",
   "description": "Desktop application that lets you find GIFs on the web easily, without having to hunt for them manually ",
+  "type": "module",
   "scripts": {
     "tauri": "tauri",
     "dev": "tauri dev",

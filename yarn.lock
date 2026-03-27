@@ -392,9 +392,9 @@
     eslint-visitor-keys "^3.3.0"
 
 "@zerodevx/svelte-toast@^0.9.0":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@zerodevx/svelte-toast/-/svelte-toast-0.9.3.tgz#6382c370d72343d2206f86491c3448a9ddf6d517"
-  integrity sha512-VPKWR4A9y01fyXRscu9HiTj7tV2hFrpRKZvGwMmaPXfHIXR1D9+NNsz0HXcQ7qZ0C5UaHS3n9uNtPtIcAXT7RQ==
+  version "0.9.6"
+  resolved "https://registry.yarnpkg.com/@zerodevx/svelte-toast/-/svelte-toast-0.9.6.tgz#7445524743c2521dc865b123c180f5f37d942ff4"
+  integrity sha512-nHlTrCjverlPK9yukK6fqbG3e/R+f10ldrc4nJHOe2qNDScuPTuYVSFEk2dDDtzWAwTN5pmdEXgA3M2RbT8jiw==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
